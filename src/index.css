@@ -8,8 +8,13 @@
 
 @layer base {
   :root {
-    --background: 203 36% 91%;
+    --background: 203 36% 87%;
     --foreground: 215 18% 16%;
+
+    --body-background: hsl(203 36% 87%);
+    --body-background-image: radial-gradient(circle at 18% 18%, hsla(205 95% 38% / 0.18), transparent 22%),
+      radial-gradient(circle at 72% 26%, hsla(186 100% 28% / 0.14), transparent 24%),
+      radial-gradient(circle at 50% 80%, hsla(205 95% 40% / 0.12), transparent 40%);
 
     --card: 210 22% 97%;
     --card-foreground: 215 18% 16%;
@@ -56,6 +61,8 @@
   .dark {
     --background: 193 82% 8%;
     --foreground: 193 18% 94%;
+    --body-background: hsl(193 82% 8%);
+    --body-background-image: none;
 
     --card: 192 40% 18%;
     --card-foreground: 193 18% 94%;
@@ -104,7 +111,11 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply text-foreground font-sans antialiased;
+    background-color: var(--body-background);
+    background-image: var(--body-background-image);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     font-feature-settings: "ss01", "cv11";
   }
 
