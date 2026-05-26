@@ -48,7 +48,7 @@ export const Navbar = () => {
                   className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group"
                 >
                   {l.label}
-                  <span className="absolute inset-x-4 -bottom-0.5 h-px scale-x-0 group-hover:scale-x-100 origin-left transition-transform gradient-bg" />
+                  <span className="absolute inset-x-4 -bottom-0.5 h-[1.5px] scale-x-0 group-hover:scale-x-100 origin-left transition-all duration-300 bg-foreground/70 group-hover:bg-foreground" />
                 </a>
               </li>
             ))}
