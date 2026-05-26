@@ -88,7 +88,7 @@ export const ChatbotWidget = () => {
               className="rounded-full bg-border/10 p-2 text-sm text-muted-foreground hover:bg-border/20"
               aria-label="Close chat"
             >
-              ×
+              Ã—
             </button>
           </div>
 
