@@ -69,7 +69,7 @@ export const Contact = () => {
           className="text-center mb-16"
         >
           <span className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
-            05 — Contact
+            05 â€” Contact
           </span>
           <h2 className="font-display font-bold text-4xl sm:text-5xl">Together</h2>
         </motion.div>
@@ -155,8 +155,8 @@ export const Contact = () => {
 export const Footer = () => (
   <footer className="border-t border-border/40 py-8">
     <div className="container mx-auto px-4 max-w-6xl flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
-      <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Mudassir Ahmed. Crafted with ? React & AI.</p>
-      <p className="font-mono text-xs">Built with MERN · Tailwind · Framer Motion</p>
+      <p className="text-sm text-muted-foreground">Â© {new Date().getFullYear()} Mudassir Ahmed. Crafted with âœ¦ React & AI.</p>
+      <p className="font-mono text-xs">Built with MERN Â· Tailwind Â· Framer Motion</p>
     </div>
   </footer>
 );
