@@ -135,13 +135,7 @@ export const Hero = () => {
             className="lg:col-span-2 relative flex justify-center"
           >
             <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-full lg:h-[420px] max-w-md">
-              <div
-                className={`absolute inset-0 rounded-[2rem] ${
-                  showProfileGlow
-                    ? "gradient-bg blur-3xl opacity-50 animate-glow-pulse"
-                    : "opacity-0"
-                }`}
-              />
+              <div className="absolute inset-0 rounded-[2rem] gradient-bg blur-2xl opacity-30 animate-glow-pulse" />
               <div className="absolute inset-0 rounded-[2rem] gradient-bg p-[2px] animate-gradient-shift" style={{ backgroundSize: "200% 200%" }}>
                 <div className="relative w-full h-full rounded-[1.95rem] overflow-hidden bg-card">
                   <img
