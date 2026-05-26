@@ -96,8 +96,16 @@ export const ChatbotWidget = () => {
       });
 
       if (!response.ok) {
-        const payload = await response.json().catch(() => null);
-        throw new Error(payload?.detail || `Chatbot backend returned ${response.status}`);
+        let payload = null;
+        let bodyText = "";
+        try {
+          payload = await response.json();
+        } catch {
+          bodyText = await response.text().catch(() => "");
+        }
+        throw new Error(
+          payload?.detail || bodyText || `Chatbot backend returned ${response.status}`
+        );
       }
 
       const data: ChatResponse = await response.json();

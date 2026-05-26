@@ -1,8 +1,10 @@
+import logging
 import uuid
 from fastapi import APIRouter, HTTPException
 from app.schemas import ChatRequest, ChatResponse, SourceItem
 from app.rag import rag_service
 
+logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/chat")
 
 
@@ -13,14 +15,16 @@ async def query_chat(payload: ChatRequest):
 
     conversation_id = payload.conversation_id or str(uuid.uuid4())
     history = payload.history or []
+    history_payload = [m.dict() if hasattr(m, "dict") else m for m in history]
 
     try:
-        answer, sources = await rag_service.chat(payload.query, [m.dict() for m in history], conversation_id)
+        answer, sources = await rag_service.chat(payload.query, history_payload, conversation_id)
         source_items = [
             SourceItem(title=source["title"], excerpt=source["excerpt"], source=source["source"]) for source in sources
         ]
         return ChatResponse(answer=answer, sources=source_items, conversation_id=conversation_id)
     except Exception as exc:
+        logger.exception("Chatbot query failed for conversation %s", conversation_id)
         raise HTTPException(status_code=500, detail=str(exc))
 
 
