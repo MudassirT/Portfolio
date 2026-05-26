@@ -1,0 +1,5 @@
+I am Mudassir Ahmed, a 19-year-old Computer Science undergraduate from Karachi, Pakistan. I build modern full-stack web applications using React, Node.js, Next.js, and MERN stack technologies.
+
+My portfolio highlights intelligent web experiences, AI-focused solutions, and agentic chatbots. I have experience with computer science fundamentals such as C, C++, OOP, discrete structures, and digital logic. I have also participated in the Governor Sindh Initiative for GenAI, Web3 & Metaverse and trained in DevOps at Saylani Mass IT Training (SMIT).
+
+I am available for opportunities and I enjoy shipping polished products that blend strong engineering with smart user experiences.

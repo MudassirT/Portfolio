@@ -1,0 +1,6 @@
+fastapi==0.118.1
+uvicorn[standard]==0.23.2
+python-dotenv==1.0.0
+google-generativeai==0.8.6
+pydantic==2.13.4
+pydantic-settings==2.14.0
