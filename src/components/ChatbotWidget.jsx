@@ -1,28 +1,19 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 
-type ChatMessage = {
-  role: "user" | "assistant";
-  content: string;
-};
 
-type ChatResponse = {
-  answer: string;
-  sources: Array<{ title: string; excerpt: string; source: string }>;
-  conversation_id: string;
-};
 
 const API_URL = import.meta.env.VITE_CHATBOT_API_URL ?? "/chatbot/api/chat/query";
 
 export const ChatbotWidget = () => {
   const [query, setQuery] = useState("");
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [conversationId, setConversationId] = useState<string | null>(null);
+  const [messages, setMessages] = useState([]);
+  const [conversationId, setConversationId] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
   const [typingText, setTypingText] = useState("");
   const [open, setOpen] = useState(false);
-  const typingRef = useRef<number | null>(null);
-  const messageListRef = useRef<HTMLDivElement | null>(null);
+  const typingRef = useRef(null);
+  const messageListRef = useRef(null);
 
   useEffect(() => {
     return () => {
@@ -36,9 +27,8 @@ export const ChatbotWidget = () => {
     if (open && messages.length === 0) {
       setMessages([
         {
-          role: "assistant",
-          content:
-            "Hi there! I’m Mudassir Ahmed. Ask me anything about my work, skills, or projects as if we’re talking face to face.",
+          role,
+          content, skills, or projects ’re talking face to face.",
         },
       ]);
     }
@@ -50,7 +40,7 @@ export const ChatbotWidget = () => {
     }
   }, [messages, typingText]);
 
-  const appendAssistantMessage = (text: string) => {
+  const appendAssistantMessage = (text) => {
     if (typingRef.current) {
       window.clearInterval(typingRef.current);
       typingRef.current = null;
@@ -66,7 +56,7 @@ export const ChatbotWidget = () => {
           window.clearInterval(typingRef.current);
           typingRef.current = null;
         }
-        setMessages((prev) => [...prev, { role: "assistant", content: text }]);
+        setMessages((prev) => [...prev, { role, content);
         setTypingText("");
       }
     }, 20);
@@ -77,21 +67,19 @@ export const ChatbotWidget = () => {
   const sendMessage = async () => {
     if (!query.trim()) return;
 
-    const userMessage: ChatMessage = { role: "user", content: query.trim() };
+    const userMessage = { role, content) };
     setMessages((prev) => [...prev, userMessage]);
     setLoading(true);
     setError(null);
 
     try {
       const response = await fetch(API_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+        method,
+        headers,
         },
-        body: JSON.stringify({
-          query: query.trim(),
-          conversation_id: conversationId,
-          history: [...messages, userMessage],
+        body),
+          conversation_id,
+          history, userMessage],
         }),
       });
 
@@ -108,15 +96,14 @@ export const ChatbotWidget = () => {
         );
       }
 
-      const data: ChatResponse = await response.json();
+      const data = await response.json();
       setConversationId(data.conversation_id);
       appendAssistantMessage(data.answer);
     } catch (err) {
       let message = "Unable to get a response from the chatbot.";
       if (err instanceof Error) {
         message = err.message === "Failed to fetch"
-          ? "Chatbot backend unreachable. Start the Python server at port 5000."
-          : err.message;
+          ? "Chatbot backend unreachable. Start the Python server at port 5000.";
       }
       setError(message);
     } finally {
@@ -125,7 +112,7 @@ export const ChatbotWidget = () => {
     }
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
       sendMessage();
@@ -136,29 +123,23 @@ export const ChatbotWidget = () => {
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
       {!open ? (
         <button
-          type="button"
           onClick={() => setOpen(true)}
-          className="inline-flex items-center justify-center rounded-full bg-primary p-3 text-primary-foreground shadow-2xl transition hover:bg-primary/90"
-          aria-label="Open portfolio chat"
+          className="inline-flex items-center justify-center rounded-full bg-primary p-3 text-primary-foreground shadow-2xl transition hover="Open portfolio chat"
         >
-          <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 4h16v12H7l-3 3V4Z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" xmlns="http="M4 4h16v12H7l-3 3V4Z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M8 11h8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
             <path d="M8 15h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
           </svg>
         </button>
-      ) : (
-        <section className="chatbot-widget glass rounded-3xl p-4 shadow-2xl w-[min(100vw-2rem,420px)] border border-border/70 bg-background/95 backdrop-blur-xl">
+      )="chatbot-widget glass rounded-3xl p-4 shadow-2xl w-[min(100vw-2rem,420px)] border border-border/70 bg-background/95 backdrop-blur-xl">
           <div className="mb-4 flex items-start justify-between gap-4">
             <div>
               <p className="text-[11px] uppercase tracking-[0.3em] text-primary">Mudassir Ahmed Assistant</p>
               <h2 className="text-xl font-bold">Chat with Mudassir</h2>
             </div>
             <button
-              type="button"
               onClick={() => setOpen(false)}
-              className="rounded-full bg-border/10 p-2 text-sm text-muted-foreground transition hover:bg-border/20"
-              aria-label="Close chatbot"
+              className="rounded-full bg-border/10 p-2 text-sm text-muted-foreground transition hover="Close chatbot"
             >
               ×
             </button>
@@ -168,16 +149,9 @@ export const ChatbotWidget = () => {
             {messages.map((message, index) => (
               <div
                 key={`${message.role}-${index}`}
-                className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
-              >
-                <div
-                  className={`max-w-[80%] rounded-3xl px-4 py-3 text-sm leading-relaxed ${
+                className={`flex ${message.role === "user" ? "justify-end"={`max-w-[80%] rounded-3xl px-4 py-3 text-sm leading-relaxed ${
                     message.role === "user"
-                      ? "bg-background border border-border text-foreground"
-                      : "bg-primary/10 border border-primary/20 text-foreground"
-                  }`}
-                >
-                  <p className="whitespace-pre-wrap">{message.content}</p>
+                      ? "bg-background border border-border text-foreground"="whitespace-pre-wrap">{message.content}</p>
                 </div>
               </div>
             ))}
@@ -199,18 +173,12 @@ export const ChatbotWidget = () => {
                 onChange={(evt) => setQuery(evt.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Ask about projects, skills, or experience..."
-                className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
-                disabled={loading}
+                className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none focus={loading}
               />
               <button
                 onClick={sendMessage}
                 disabled={loading || !query.trim()}
-                className="rounded-2xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                {loading ? "Thinking..." : "Send"}
-              </button>
-            </div>
-            <p className="text-xs text-muted-foreground">Conversation memory is preserved for this session.</p>
+                className="rounded-2xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover="text-xs text-muted-foreground">Conversation memory is preserved for this session.</p>
           </div>
         </section>
       )}
