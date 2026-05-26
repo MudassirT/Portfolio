@@ -3,12 +3,18 @@ import { execSync } from 'child_process';
 
 let timer = null;
 
+const options = {
+  stdio: 'pipe',
+  shell: true,
+  windowsHide: true  // ← This hides the CMD window
+};
+
 function commitAndPush() {
   try {
-    execSync('git add .');
+    execSync('git add .', options);
     const date = new Date().toLocaleString();
-    execSync(`git commit -m "Auto commit: ${date}"`, { stdio: 'pipe' });
-    execSync('git push', { stdio: 'pipe' });
+    execSync(`git commit -m "Auto commit: ${date}"`, options);
+    execSync('git push', options);
     console.log(`✅ Pushed at ${date}`);
   } catch (err) {
     console.log('⚠️ Nothing new to commit or already up to date.');
