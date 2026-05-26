@@ -15,6 +15,7 @@ export const Hero = () => {
 
   const activeTheme = mounted ? resolvedTheme || theme : "light";
   const currentImage = activeTheme === "dark" ? profileDark : profileLight;
+  const showProfileGlow = activeTheme === "dark";
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 pb-20">
