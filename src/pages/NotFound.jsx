@@ -5,7 +5,7 @@ const NotFound = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.error("404 Error, location.pathname);
+    console.error("404 Error", location.pathname);
   }, [location.pathname]);
 
   return (
@@ -13,7 +13,10 @@ const NotFound = () => {
       <div className="text-center">
         <h1 className="mb-4 text-4xl font-bold">404</h1>
         <p className="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>
-        <a href="/" className="text-primary underline hover);
+        <a href="/" className="text-primary underline hover:opacity-80">Go back home</a>
+      </div>
+    </div>
+  );
 };
 
 export default NotFound;
