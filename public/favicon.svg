@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="text" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#d1fae5"/>
+    </linearGradient>
+  </defs>
+  <!-- Rounded square background -->
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <!-- Inner subtle glow -->
+  <rect width="64" height="64" rx="14" fill="white" fill-opacity="0.08"/>
+  <!-- MA letters -->
+  <text
+    x="32"
+    y="44"
+    text-anchor="middle"
+    font-family="'Segoe UI', Arial, sans-serif"
+    font-weight="800"
+    font-size="26"
+    letter-spacing="-1"
+    fill="url(#text)"
+  >MA</text>
+</svg>

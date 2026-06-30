@@ -25,6 +25,8 @@ dist-ssr
 
 node_modules/
 auto-git.js
-package.json
-package-lock.json.env
+package-lock.json
+.env
 .env.example
+.env.local
+.env.*.local

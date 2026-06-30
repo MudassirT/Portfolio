@@ -5,12 +5,15 @@ from pydantic_settings import BaseSettings
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 DEFAULT_DOCUMENT_PATHS = [
-    str(ROOT_DIR.parent / "portfolio-summary.txt"),
-    str(ROOT_DIR.parent / "src" / "components" / "Hero.tsx"),
-    str(ROOT_DIR.parent / "src" / "components" / "About.tsx"),
-    str(ROOT_DIR.parent / "src" / "components" / "Projects.tsx"),
-    str(ROOT_DIR.parent / "src" / "components" / "Contact.tsx"),
-    str(ROOT_DIR.parent / "src" / "pages" / "Index.tsx"),
+    str(ROOT_DIR.parent / "README.md"),
+    str(ROOT_DIR / "portfolio-knowledge.md"),
+    str(ROOT_DIR.parent / "src" / "components" / "sections" / "Hero.tsx"),
+    str(ROOT_DIR.parent / "src" / "components" / "sections" / "About.tsx"),
+    str(ROOT_DIR.parent / "src" / "components" / "sections" / "Projects.tsx"),
+    str(ROOT_DIR.parent / "src" / "components" / "sections" / "Skills.tsx"),
+    str(ROOT_DIR.parent / "src" / "components" / "sections" / "Education.tsx"),
+    str(ROOT_DIR.parent / "src" / "components" / "sections" / "Contact.tsx"),
+    str(ROOT_DIR.parent / "src" / "pages" / "Index.jsx"),
 ]
 
 
@@ -25,7 +28,15 @@ class Settings(BaseSettings):
     resume_pdf_path: str | None = Field(None, env="RESUME_PDF_PATH")
     port: int = Field(5000, env="PORT")
     frontend_origins: List[str] = Field(
-        ["http://localhost:8080", "http://127.0.0.1:8080"], env="FRONTEND_ORIGINS"
+        [
+            "http://localhost:8080",
+            "http://127.0.0.1:8080",
+            "http://localhost:8081",
+            "http://127.0.0.1:8081",
+            "http://localhost:5173",
+            "http://127.0.0.1:5173",
+        ],
+        env="FRONTEND_ORIGINS",
     )
 
     model_config = {

@@ -8,6 +8,7 @@ dotenv.config();
 const app = express();
 const PORT = Number(process.env.PORT) || 4000;
 const EMAIL_TO = process.env.EMAIL_TO || process.env.EMAIL_USER;
+const OWNER_NAME = process.env.OWNER_NAME || "Mudassir Ahmed";
 
 app.use(cors({ origin: true }));
 app.use(express.json());
@@ -64,11 +65,11 @@ app.post("/api/contact", async (req, res) => {
   };
 
   const autoReplyOptions = {
-    from: `Mudassir Ahmed <${emailUser}>`,
+    from: `${OWNER_NAME} <${emailUser}>`,
     to: email,
-    subject: "Thank you for contacting Mudassir Ahmed",
-    text: `Hi ${name},\n\nThank you for reaching out. I have received your message and will respond as soon as possible.\n\n---\n${message}\n---\n\nBest regards,\nMudassir Ahmed`,
-    html: `<p>Hi ${name},</p><p>Thank you for reaching out. I have received your message and will respond as soon as possible.</p><hr/><p>${message.replace(/\n/g, "<br />")}</p><p>Best regards,<br />Mudassir Ahmed</p>`,
+    subject: `Thank you for contacting ${OWNER_NAME}`,
+    text: `Hi ${name},\n\nThank you for reaching out. I have received your message and will respond as soon as possible.\n\n---\n${message}\n---\n\nBest regards,\n${OWNER_NAME}`,
+    html: `<p>Hi ${name},</p><p>Thank you for reaching out. I have received your message and will respond as soon as possible.</p><hr/><p>${message.replace(/\n/g, "<br />")}</p><p>Best regards,<br />${OWNER_NAME}</p>`,
   };
 
   try {
