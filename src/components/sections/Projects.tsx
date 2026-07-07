@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-import { ArrowUpRight, Github } from "lucide-react";
+import { ExternalLink, Github, Sparkles } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
 
 const projects = [
@@ -7,7 +6,8 @@ const projects = [
     title: "Research AI Chatbot",
     description:
       "An intelligent AI chatbot designed for in-depth research, capable of analyzing topics, citing sources, and generating structured insights.",
-    tags: ["Next.js", "OpenAI", "TypeScript"],
+    tags: ["Next.js", "OpenAI", "Tailwind", "TypeScript"],
+    accent: "from-primary to-primary-glow",
     emoji: "🔬",
     featured: true,
     live: "#",
@@ -16,28 +16,31 @@ const projects = [
   {
     title: "RAG Chatbot — FreshMart",
     description:
-      "Retrieval-Augmented Generation chatbot integrated into e-commerce to help customers quickly find products and answers.",
-    tags: ["RAG", "Python", "LangChain"],
+      "Retrieval-Augmented Generation chatbot integrated into an e-commerce experience to help customers quickly find products and answers.",
+    tags: ["RAG", "Python", "LangChain", "MERN"],
+    accent: "from-accent to-primary",
     emoji: "🛒",
-    featured: false,
+    featured: true,
     live: "#",
     code: "https://github.com/MudassirT",
   },
   {
     title: "AI Personal Assistant",
     description:
-      "An AI assistant that monitors emails, LinkedIn, and WhatsApp — surfacing what matters most with minimal effort.",
-    tags: ["Agentic AI", "Node.js", "APIs"],
+      "An AI assistant that monitors emails, LinkedIn messages, and WhatsApp chats — surfacing what matters most with minimal effort.",
+    tags: ["Agentic AI", "Node.js", "APIs", "Automation"],
+    accent: "from-primary-glow to-accent",
     emoji: "🤖",
-    featured: false,
+    featured: true,
     live: "#",
     code: "https://github.com/MudassirT",
   },
   {
     title: "Notes Saving Website",
     description:
-      "Full-stack note-taking app with auth, CRUD, and polished responsive UI built with the MERN stack.",
-    tags: ["MongoDB", "Express", "React"],
+      "A full-stack note-taking app with authentication, CRUD, and a polished responsive UI built with the MERN stack.",
+    tags: ["MongoDB", "Express", "React", "Node.js"],
+    accent: "from-primary to-accent",
     emoji: "📝",
     live: "#",
     code: "https://github.com/MudassirT",
@@ -45,8 +48,9 @@ const projects = [
   {
     title: "Tic Tac Toe Game",
     description:
-      "Classic game with responsive design, smooth animations, and reliable win detection.",
-    tags: ["React", "Tailwind"],
+      "A classic game with responsive design, smooth animations, and reliable win detection for a polished interactive experience.",
+    tags: ["React", "Tailwind", "Game Logic"],
+    accent: "from-accent to-primary-glow",
     emoji: "🎮",
     live: "#",
     code: "https://github.com/MudassirT",
@@ -54,64 +58,76 @@ const projects = [
   {
     title: "Rock Paper Scissors",
     description:
-      "Interactive browser game featuring score tracking and playful motion design.",
-    tags: ["JavaScript", "CSS"],
+      "An interactive browser game featuring score tracking and playful motion design built with JavaScript and CSS.",
+    tags: ["JavaScript", "CSS", "DOM"],
+    accent: "from-primary-glow to-primary",
     emoji: "✊",
     live: "#",
     code: "https://github.com/MudassirT",
   },
 ];
 
-/* Featured card (large) */
-const FeaturedCard = ({ project }: { project: typeof projects[0] }) => {
+const Projects = () => {
+  return (
+    <section id="projects" className="relative py-24 overflow-hidden">
+      <div className="absolute inset-0 mesh-bg opacity-30" />
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="max-w-2xl mx-auto text-center mb-16">
+          <p className="font-mono text-sm text-primary mb-3 tracking-widest uppercase">// Projects</p>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Featured <span className="gradient-text">Work</span>
+          </h2>
+          <p className="text-muted-foreground">
+            A selection of things I've built — always learning, always shipping.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((p, i) => (
+            <ProjectCard key={p.title} project={p} delay={i * 80} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const ProjectCard = ({ project, delay }: { project: typeof projects[0]; delay: number }) => {
   const { ref, visible } = useReveal<HTMLDivElement>();
   return (
     <article
       ref={ref}
-      className={`group bento-card rounded-2xl overflow-hidden md:col-span-2 md:row-span-2 flex flex-col transition-all duration-700 ${
+      className={`group relative glass rounded-2xl overflow-hidden hover-lift transition-all duration-700 ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
+      style={{ transitionDelay: `${delay}ms` }}
     >
-      {/* Visual header */}
-      <div className="relative h-52 md:h-64 bg-gradient-to-br from-emerald-950/80 via-[hsl(var(--card))] to-teal-950/40 overflow-hidden flex-shrink-0">
-        <div className="absolute inset-0 dot-pattern opacity-30" />
-        {/* Glow orb */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-primary/[0.12] blur-3xl rounded-full" />
-        <div className="absolute inset-0 flex items-center justify-center text-7xl group-hover:scale-110 transition-transform duration-500">
+      {/* Header visual */}
+      <div className={`relative h-44 bg-gradient-to-br ${project.accent} overflow-hidden`}>
+        <div className="absolute inset-0 grid-pattern opacity-30" />
+        <div className="absolute inset-0 flex items-center justify-center text-7xl group-hover:scale-125 group-hover:rotate-12 transition-spring duration-500">
           {project.emoji}
         </div>
-
-        {/* FEATURED label */}
-        <div className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-primary/15 border border-primary/25 backdrop-blur-sm">
-          <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-          <span className="text-xs font-mono text-primary font-medium tracking-wide">Featured Project</span>
-        </div>
-
-        {/* Link arrow */}
-        <a
-          href={project.live}
-          aria-label={`Open ${project.title}`}
-          className="absolute top-4 right-4 w-9 h-9 rounded-xl bg-background/50 backdrop-blur border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-all"
-        >
-          <ArrowUpRight className="w-4 h-4" />
-        </a>
-
-        {/* Fade to card */}
-        <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-card to-transparent" />
+        {project.featured && (
+          <div className="absolute top-3 right-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-background/80 backdrop-blur text-xs font-semibold">
+            <Sparkles className="h-3 w-3 text-primary" />
+            Featured
+          </div>
+        )}
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-card to-transparent" />
       </div>
 
-      {/* Body */}
-      <div className="p-6 flex flex-col flex-1">
-        <h3 className="font-display font-bold text-xl text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+      <div className="p-6">
+        <h3 className="text-xl font-bold mb-2 group-hover:gradient-text transition-smooth">
           {project.title}
         </h3>
-        <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-1">
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4 min-h-[60px]">
           {project.description}
         </p>
 
-        <div className="flex flex-wrap gap-2 mb-5">
-          {project.tags.map(t => (
-            <span key={t} className="text-xs px-2.5 py-1 rounded-lg bg-primary/8 text-primary font-mono border border-primary/15">
+        <div className="flex flex-wrap gap-1.5 mb-5">
+          {project.tags.map((t) => (
+            <span key={t} className="text-xs px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground font-mono">
               {t}
             </span>
           ))}
@@ -120,148 +136,21 @@ const FeaturedCard = ({ project }: { project: typeof projects[0] }) => {
         <div className="flex gap-2">
           <a
             href={project.live}
-            className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-display font-semibold hover:bg-primary/90 hover:shadow-[0_0_24px_hsl(var(--primary)/0.4)] transition-all duration-300"
+            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-primary to-primary-glow text-primary-foreground text-sm font-medium hover:opacity-90 hover:scale-[1.02] transition-spring shadow-elegant"
           >
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            <ExternalLink className="h-3.5 w-3.5" />
             Live Demo
           </a>
           <a
             href={project.code}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-border text-muted-foreground text-sm hover:text-foreground hover:border-primary/30 hover:bg-secondary/30 transition-all duration-300"
+            className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-secondary text-secondary-foreground text-sm font-medium hover:bg-secondary/70 hover:scale-[1.02] transition-spring"
           >
-            <Github className="w-3.5 h-3.5" />
+            <Github className="h-3.5 w-3.5" />
             Code
           </a>
         </div>
       </div>
     </article>
-  );
-};
-
-/* Regular card (compact) */
-const ProjectCard = ({
-  project,
-  delay = 0,
-}: {
-  project: typeof projects[0];
-  delay?: number;
-}) => {
-  const { ref, visible } = useReveal<HTMLDivElement>();
-  return (
-    <article
-      ref={ref}
-      className={`group bento-card rounded-2xl overflow-hidden flex flex-col transition-all duration-700 ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {/* Mini header */}
-      <div className="relative h-28 bg-gradient-to-br from-emerald-950/60 via-card to-teal-950/30 overflow-hidden flex-shrink-0">
-        <div className="absolute inset-0 dot-pattern opacity-20" />
-        <div className="absolute inset-0 flex items-center justify-center text-4xl group-hover:scale-110 transition-transform duration-400">
-          {project.emoji}
-        </div>
-        <a
-          href={project.live}
-          aria-label={`Open ${project.title}`}
-          className="absolute top-3 right-3 w-7 h-7 rounded-lg bg-background/50 backdrop-blur border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/40 transition-all"
-        >
-          <ArrowUpRight className="w-3 h-3" />
-        </a>
-      </div>
-
-      {/* Body */}
-      <div className="p-5 flex flex-col flex-1">
-        <div className="flex items-start justify-between mb-2">
-          <h3 className="font-display font-bold text-sm text-foreground group-hover:text-primary transition-colors duration-300 leading-tight">
-            {project.title}
-          </h3>
-        </div>
-        <p className="text-xs text-muted-foreground leading-relaxed mb-4 flex-1">
-          {project.description}
-        </p>
-
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {project.tags.map(t => (
-            <span key={t} className="text-[10px] px-2 py-0.5 rounded-md bg-secondary/50 text-muted-foreground font-mono border border-border/70">
-              {t}
-            </span>
-          ))}
-        </div>
-
-        <div className="flex gap-1.5">
-          <a
-            href={project.live}
-            className="flex-1 inline-flex items-center justify-center gap-1 px-3 py-1.5 rounded-lg bg-primary/10 text-primary border border-primary/20 text-xs font-display font-semibold hover:bg-primary/15 transition-all duration-200"
-          >
-            Demo
-          </a>
-          <a
-            href={project.code}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-3 py-1.5 rounded-lg border border-border text-muted-foreground text-xs hover:border-primary/30 hover:text-foreground transition-all duration-200"
-          >
-            <Github className="w-3 h-3" />
-          </a>
-        </div>
-      </div>
-    </article>
-  );
-};
-
-const Projects = () => {
-  const { ref, visible } = useReveal<HTMLDivElement>();
-  const featured = projects[0];
-  const rest = projects.slice(1);
-
-  return (
-    <section id="projects" className="relative py-28 overflow-hidden">
-      <div className="absolute inset-0 mesh-bg opacity-40" />
-
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        {/* Header */}
-        <div
-          ref={ref}
-          className={`mb-12 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-        >
-          <p className="font-mono text-xs text-primary mb-4 tracking-[0.2em] uppercase">
-            // Projects
-          </p>
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-            <h2 className="font-display font-extrabold text-4xl md:text-5xl leading-[1.1] tracking-tight">
-              Featured{" "}
-              <span className="shimmer-text bg-[length:200%_auto]">Work</span>
-            </h2>
-            <p className="text-sm text-muted-foreground max-w-xs">
-              A selection of things I've built — always learning, always shipping.
-            </p>
-          </div>
-        </div>
-
-        {/* ── Bento Grid ── */}
-        {/* Layout:
-            Row 1+2: [Featured col-span-2 row-span-2] | [Card] stacked 2x
-            Row 3:   [Card] [Card] [Card]
-        */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-auto">
-          {/* Featured — large */}
-          <FeaturedCard project={featured} />
-
-          {/* Medium stack — right column */}
-          {rest.slice(0, 2).map((p, i) => (
-            <ProjectCard key={p.title} project={p} delay={i * 80} />
-          ))}
-
-          {/* Bottom row — 3 equal */}
-          {rest.slice(2).map((p, i) => (
-            <ProjectCard key={p.title} project={p} delay={(i + 2) * 80} />
-          ))}
-        </div>
-      </div>
-    </section>
   );
 };
 

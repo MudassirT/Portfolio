@@ -18,7 +18,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "allowJs": true,
+    "types": ["vite/client"],
+    "ignoreDeprecations": "6.0"
   },
   "include": ["src"]
 }
