@@ -97,9 +97,8 @@ const ProjectCard = ({ project, delay }: { project: typeof projects[0]; delay: n
   return (
     <article
       ref={ref}
-      className={`group relative glass rounded-2xl overflow-hidden hover-lift transition-all duration-700 ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
+      className={`group relative glass rounded-2xl overflow-hidden hover-lift transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {/* Header visual */}
