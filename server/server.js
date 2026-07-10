@@ -42,6 +42,7 @@ transporter.verify((error) => {
   }
 });
 
+// API endpoint to handle contact form submissions
 app.post("/api/contact", async (req, res) => {
   const { name, email, message } = req.body;
 
@@ -72,6 +73,7 @@ app.post("/api/contact", async (req, res) => {
     html: `<p>Hi ${name},</p><p>Thank you for reaching out. I have received your message and will respond as soon as possible.</p><hr/><p>${message.replace(/\n/g, "<br />")}</p><p>Best regards,<br />${OWNER_NAME}</p>`,
   };
 
+  // Send the contact message and auto-reply email
   try {
     console.log("Sending contact message to:", EMAIL_TO);
     const contactResult = await transporter.sendMail(mailOptions);
@@ -88,6 +90,7 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
+// Start the server
 app.listen(PORT, () => {
   console.log(`Contact API server running on http://localhost:${PORT}`);
 });
