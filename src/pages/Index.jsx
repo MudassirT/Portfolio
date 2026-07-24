@@ -1,4 +1,3 @@
-import { IntroLoader } from "@/components/IntroLoader";
 import { Navbar } from "@/components/Navbar.tsx";
 import Hero from "@/components/sections/Hero.tsx";
 import About from "@/components/sections/About.tsx";
@@ -11,21 +10,19 @@ import { ChatbotWidget } from "@/components/ChatbotWidget";
 
 const Index = () => {
   return (
-    <IntroLoader>
-      <div className="min-h-screen bg-background">
-        <Navbar />
-        <main>
-          <Hero />
-          <About />
-          <Education />
-          <Skills />
-          <Projects />
-          <Contact />
-        </main>
-        <Footer />
-        <ChatbotWidget />
-      </div>
-    </IntroLoader>
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Education />
+        <Skills />
+        <Projects />
+        <Contact />
+      </main>
+      <Footer />
+      <ChatbotWidget />
+    </div>
   );
 };
 

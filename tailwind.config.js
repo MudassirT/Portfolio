@@ -75,12 +75,12 @@ export default {
           "100%": { backgroundPosition: "200% center" },
         },
         "marquee": {
-          "0%": { transform: "translateX(0)" },
+          "0%": { transform: "translateX(0%)" },
           "100%": { transform: "translateX(-50%)" },
         },
         "marquee-reverse": {
           "0%": { transform: "translateX(-50%)" },
-          "100%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(0%)" },
         },
         "blob": {
           "0%, 100%": { transform: "translate(0, 0) scale(1)" },
@@ -104,8 +104,8 @@ export default {
         "float": "float 6s ease-in-out infinite",
         "glow-pulse": "glow-pulse 3s ease-in-out infinite",
         "shimmer": "shimmer 3s linear infinite",
-        "marquee": "marquee 28s linear infinite",
-        "marquee-reverse": "marquee-reverse 28s linear infinite",
+        "marquee": "marquee 55s linear infinite",
+        "marquee-reverse": "marquee-reverse 55s linear infinite",
         "blob": "blob 14s ease-in-out infinite",
         "spin-slow": "spin-slow 22s linear infinite",
         "pulse-glow": "pulse-glow 2.8s ease-in-out infinite",

@@ -50,8 +50,8 @@ const Hero = () => {
           <div className="space-y-7 animate-fade-in-up">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm font-medium">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
               </span>
               <span className="text-muted-foreground">Available for opportunities</span>
             </div>
@@ -80,24 +80,30 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg" className="rounded-full bg-gradient-to-r from-primary to-primary-glow hover:opacity-90 shadow-elegant group">
-                <a href="#projects">
-                  View My Work
-                  <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </a>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full">
-                <a href="#contact">
-                  <Mail className="mr-2 h-4 w-4" />
-                  Get In Touch
-                </a>
-              </Button>
-              <Button asChild size="lg" variant="ghost" className="rounded-full">
-                <a href="#" download>
-                  <Download className="mr-2 h-4 w-4" />
-                  Resume
-                </a>
-              </Button>
+              <a
+                href="#projects"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-primary-glow text-primary-foreground text-sm font-semibold hover:opacity-90 hover:scale-[1.03] shadow-elegant transition-all duration-300 group"
+              >
+                View My Work
+                <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a
+                href="#contact"
+                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-border/80 bg-card/60 backdrop-blur-sm text-sm font-semibold text-foreground hover:text-primary-foreground hover:border-transparent hover:shadow-elegant hover:scale-[1.03] transition-all duration-300 overflow-hidden"
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-primary to-primary-glow opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <Mail className="h-4 w-4 relative z-10" />
+                <span className="relative z-10">Get In Touch</span>
+              </a>
+              <a
+                href="#"
+                download
+                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-border/80 bg-card/60 backdrop-blur-sm text-sm font-semibold text-foreground hover:text-primary-foreground hover:border-transparent hover:shadow-elegant hover:scale-[1.03] transition-all duration-300 overflow-hidden"
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-primary to-primary-glow opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <Download className="h-4 w-4 relative z-10" />
+                <span className="relative z-10">Resume</span>
+              </a>
             </div>
 
             <div className="flex items-center gap-4 pt-2">
@@ -105,14 +111,16 @@ const Hero = () => {
               <div className="h-px flex-1 max-w-[60px] bg-border" />
               <div className="flex gap-2">
                 {[
-                  { icon: Github, href: "https://github.com/MudassirT", label: "GitHub" },
-                  { icon: Linkedin, href: "https://www.linkedin.com/in/mudassir-tariq-465102370", label: "LinkedIn" },
-                  { icon: Mail, href: "#contact", label: "Email" },
-                ].map(({ icon: Icon, href, label }) => (
+                  { icon: Github, href: "https://github.com/MudassirT", label: "GitHub", external: true },
+                  { icon: Linkedin, href: "https://www.linkedin.com/in/mudassir-tariq-465102370", label: "LinkedIn", external: true },
+                  { icon: Mail, href: "#contact", label: "Email", external: false },
+                ].map(({ icon: Icon, href, label, external }) => (
                   <a
                     key={label}
                     href={href}
                     aria-label={label}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noopener noreferrer" : undefined}
                     className="w-10 h-10 rounded-full glass flex items-center justify-center text-muted-foreground hover:text-primary hover:scale-110 hover:border-primary/50 transition-spring"
                   >
                     <Icon className="h-4 w-4" />
@@ -140,18 +148,18 @@ const Hero = () => {
                 />
               </div>
 
-              {/* Floating tech badges */}
-              <div className="absolute -top-4 -right-2 glass rounded-2xl px-4 py-2 shadow-card animate-float font-mono text-sm">
-                <span className="text-accent">⚛</span> React
+              {/* Floating tech badges with gradient icons */}
+              <div className="absolute -top-4 -right-2 glass rounded-2xl px-4 py-2 shadow-card animate-float font-mono text-sm flex items-center gap-1.5">
+                <span className="gradient-text font-bold text-base">⚛</span> React
               </div>
-              <div className="absolute top-1/3 -left-8 glass rounded-2xl px-4 py-2 shadow-card animate-float font-mono text-sm" style={{ animationDelay: "1.5s" }}>
-                <span className="gradient-text font-bold">{ }</span> Node.js
+              <div className="absolute top-1/3 -left-8 glass rounded-2xl px-4 py-2 shadow-card animate-float font-mono text-sm flex items-center gap-1.5" style={{ animationDelay: "1.5s" }}>
+                <span className="gradient-text font-bold text-base">⬢</span> Node.js
               </div>
-              <div className="absolute -bottom-2 -right-6 glass rounded-2xl px-4 py-2 shadow-card animate-float font-mono text-sm" style={{ animationDelay: "3s" }}>
-                <span className="text-primary">✦</span> AI/ML
+              <div className="absolute -bottom-2 -right-6 glass rounded-2xl px-4 py-2 shadow-card animate-float font-mono text-sm flex items-center gap-1.5" style={{ animationDelay: "3s" }}>
+                <span className="gradient-text font-bold text-base">✦</span> AI/ML
               </div>
-              <div className="absolute bottom-1/4 -left-12 glass rounded-2xl px-4 py-2 shadow-card animate-float font-mono text-sm" style={{ animationDelay: "2s" }}>
-                <span className="text-accent">▲</span> Next.js
+              <div className="absolute bottom-1/4 -left-12 glass rounded-2xl px-4 py-2 shadow-card animate-float font-mono text-sm flex items-center gap-1.5" style={{ animationDelay: "2s" }}>
+                <span className="gradient-text font-bold text-base">▲</span> Next.js
               </div>
             </div>
           </div>
@@ -165,9 +173,17 @@ const Hero = () => {
             { value: "10+", label: "Technologies" },
             { value: "∞", label: "Cups of Chai" },
           ].map((s) => (
-            <div key={s.label} className="glass rounded-2xl p-5 text-center hover-lift">
-              <div className="text-3xl md:text-4xl font-bold gradient-text">{s.value}</div>
-              <div className="text-xs md:text-sm text-muted-foreground mt-1 uppercase tracking-wider">{s.label}</div>
+            <div
+              key={s.label}
+              className="group glass rounded-2xl p-5 text-center relative overflow-hidden transition-all duration-300 border border-border/30 hover:border-primary/50 hover:-translate-y-2 cursor-pointer"
+            >
+              {/* Ambient hover glow gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+              <div className="relative z-10">
+                <div className="text-3xl md:text-4xl font-bold gradient-text group-hover:scale-110 transition-transform duration-300 inline-block">{s.value}</div>
+                <div className="text-xs md:text-sm text-muted-foreground mt-1 uppercase tracking-wider group-hover:text-foreground transition-colors">{s.label}</div>
+              </div>
             </div>
           ))}
         </div>

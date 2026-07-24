@@ -160,7 +160,7 @@ export const ChatbotWidget = () => {
       }]);
     }
     if (open && !minimized) setTimeout(() => inputRef.current?.focus(), 200);
-  }, [open, minimized]);
+  }, [open, minimized, messages.length]);
 
   useEffect(() => {
     if (messageListRef.current)

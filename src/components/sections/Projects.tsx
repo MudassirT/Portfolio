@@ -1,7 +1,19 @@
 import { ExternalLink, Github, Sparkles } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
 
-const projects = [
+type Project = {
+  title: string;
+  description: string;
+  tags: string[];
+  accent: string;
+  emoji: string;
+  image?: string;
+  featured?: boolean;
+  live: string;
+  code: string;
+};
+
+const projects: Project[] = [
   {
     title: "Research AI Chatbot",
     description:
@@ -42,6 +54,7 @@ const projects = [
     tags: ["MongoDB", "Express", "React", "Node.js"],
     accent: "from-primary to-accent",
     emoji: "📝",
+    image: "/ph_image.png",
     live: "https://paste-hub-opal.vercel.app/",
     code: "https://github.com/MudassirT/Paste-Hub",
   },
@@ -52,6 +65,7 @@ const projects = [
     tags: ["React", "Tailwind", "Game Logic"],
     accent: "from-accent to-primary-glow",
     emoji: "🎮",
+    image: "/ttt_image.png",
     live: "https://tic-tac-toe-blond-eight-45.vercel.app/",
     code: "https://github.com/MudassirT/Tic-Tac-Toe_Game",
   },
@@ -62,6 +76,7 @@ const projects = [
     tags: ["JavaScript", "CSS", "DOM"],
     accent: "from-primary-glow to-primary",
     emoji: "✊",
+    image: "/rps_image.png",
     live: "https://rock-paper-scissors-xi-henna.vercel.app/",
     code: "https://github.com/MudassirT/Rock-Paper-Sicssors",
   },
@@ -92,28 +107,38 @@ const Projects = () => {
   );
 };
 
-const ProjectCard = ({ project, delay }: { project: typeof projects[0]; delay: number }) => {
+const ProjectCard = ({ project, delay }: { project: Project; delay: number }) => {
   const { ref, visible } = useReveal<HTMLDivElement>();
   return (
     <article
       ref={ref}
-      className={`group relative glass rounded-2xl overflow-hidden hover-lift transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      className={`group relative glass rounded-2xl overflow-hidden hover-lift border border-border/30 group-hover:border-primary/50 transition-all duration-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ transitionDelay: visible ? "0ms" : `${delay}ms` }}
     >
       {/* Header visual */}
       <div className={`relative h-44 bg-gradient-to-br ${project.accent} overflow-hidden`}>
         <div className="absolute inset-0 grid-pattern opacity-30" />
-        <div className="absolute inset-0 flex items-center justify-center text-7xl group-hover:scale-125 group-hover:rotate-12 transition-spring duration-500">
-          {project.emoji}
-        </div>
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={project.title}
+            className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center text-7xl group-hover:scale-125 group-hover:rotate-12 transition-spring duration-500">
+            {project.emoji}
+          </div>
+        )}
         {project.featured && (
           <div className="absolute top-3 right-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-background/80 backdrop-blur text-xs font-semibold">
             <Sparkles className="h-3 w-3 text-primary" />
             Featured
           </div>
         )}
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-card to-transparent" />
+        {!project.image && (
+          <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-card to-transparent" />
+        )}
       </div>
 
       <div className="p-6">
@@ -135,6 +160,8 @@ const ProjectCard = ({ project, delay }: { project: typeof projects[0]; delay: n
         <div className="flex gap-2">
           <a
             href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-primary to-primary-glow text-primary-foreground text-sm font-medium hover:opacity-90 hover:scale-[1.02] transition-spring shadow-elegant"
           >
             <ExternalLink className="h-3.5 w-3.5" />
@@ -142,6 +169,8 @@ const ProjectCard = ({ project, delay }: { project: typeof projects[0]; delay: n
           </a>
           <a
             href={project.code}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-secondary text-secondary-foreground text-sm font-medium hover:bg-secondary/70 hover:scale-[1.02] transition-spring"
           >
             <Github className="h-3.5 w-3.5" />

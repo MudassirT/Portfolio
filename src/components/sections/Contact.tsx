@@ -93,17 +93,29 @@ const Contact = () => {
               { icon: MapPin, label: "Location", value: "Karachi, Pakistan" },
               { icon: Phone, label: "Status", value: "Open to opportunities" },
             ].map((c) => (
-              <div key={c.label} className="glass rounded-2xl p-5 flex items-center gap-4 hover-lift">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center shadow-elegant flex-shrink-0">
-                  <c.icon className="h-5 w-5 text-primary-foreground" />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-xs uppercase tracking-wider text-muted-foreground">{c.label}</p>
-                  {c.href ? (
-                    <a href={c.href} className="font-medium hover:text-primary transition-smooth break-all">{c.value}</a>
-                  ) : (
-                    <p className="font-medium">{c.value}</p>
-                  )}
+              <div key={c.label} className="group glass rounded-2xl p-5 flex items-center gap-4 hover-lift relative overflow-hidden border border-border/30 group-hover:border-primary/50 transition-all duration-300">
+                {/* Ambient hover glow gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                <div className="relative z-10 flex items-center gap-4 w-full min-w-0">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/25 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
+                    <c.icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground">{c.label}</p>
+                    {c.href ? (
+                      <a
+                        href={c.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium hover:text-primary transition-smooth break-all"
+                      >
+                        {c.value}
+                      </a>
+                    ) : (
+                      <p className="font-medium">{c.value}</p>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
@@ -119,8 +131,10 @@ const Contact = () => {
                   <a
                     key={s.label}
                     href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label={s.label}
-                    className="w-11 h-11 rounded-xl bg-secondary flex items-center justify-center hover:bg-gradient-to-br hover:from-primary hover:to-primary-glow hover:text-primary-foreground hover:scale-110 transition-spring"
+                    className="w-11 h-11 rounded-xl border border-border/60 bg-background/50 text-foreground hover:border-primary hover:text-primary hover:bg-primary/10 hover:scale-110 transition-spring flex items-center justify-center"
                   >
                     <s.icon className="h-4 w-4" />
                   </a>

@@ -7,29 +7,21 @@ const traits = [
     icon: Code2,
     title: "Clean Code",
     desc: "Writing maintainable, scalable, and elegant solutions.",
-    color: "from-emerald-500/10 to-emerald-400/5",
-    iconColor: "text-emerald-400",
   },
   {
     icon: Brain,
     title: "AI Curious",
     desc: "Exploring agentic AI, RAG, and intelligent assistants.",
-    color: "from-emerald-500/10 to-teal-400/5",
-    iconColor: "text-emerald-400",
   },
   {
     icon: Rocket,
     title: "Fast Learner",
     desc: "Picking up new tools and frameworks rapidly.",
-    color: "from-teal-500/10 to-emerald-400/5",
-    iconColor: "text-emerald-400",
   },
   {
     icon: Heart,
     title: "Passion Driven",
     desc: "Building things I genuinely care about.",
-    color: "from-emerald-400/10 to-emerald-500/5",
-    iconColor: "text-emerald-400",
   },
 ];
 
@@ -40,7 +32,7 @@ const container = {
 
 const cardVariant = {
   hidden: { opacity: 0, y: 20 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.65, 0, 0.35, 1] } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.65, 0, 0.35, 1] } },
 };
 
 const About = () => {
@@ -78,19 +70,24 @@ const About = () => {
             {/* Quick facts */}
             <div className="grid grid-cols-2 gap-3">
               {[
-                { label: "Based in",  value: "Karachi, Pakistan" },
-                { label: "Degree",    value: "BS Computer Science" },
-                { label: "Focus",     value: "MERN + AI + DevOps" },
-                { label: "Status",    value: "Open to work ✓" },
+                { label: "Based in", value: "Karachi, Pakistan" },
+                { label: "Degree", value: "BS Computer Science" },
+                { label: "Focus", value: "MERN + AI + DevOps" },
+                { label: "Status", value: "Open to work ✓" },
               ].map(f => (
                 <div
                   key={f.label}
-                  className="bento-card rounded-xl p-3.5"
+                  className="group bento-card rounded-xl p-3.5 relative overflow-hidden transition-all duration-300 hover:border-primary/50 hover:-translate-y-0.5 cursor-pointer"
                 >
-                  <p className="text-[11px] font-mono text-muted-foreground/70 uppercase tracking-widest mb-0.5">
-                    {f.label}
-                  </p>
-                  <p className="text-sm font-medium text-foreground">{f.value}</p>
+                  {/* Ambient hover glow gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                  <div className="relative z-10">
+                    <p className="text-[11px] font-mono text-muted-foreground/70 uppercase tracking-widest mb-0.5 group-hover:text-primary transition-colors">
+                      {f.label}
+                    </p>
+                    <p className="text-sm font-medium text-foreground">{f.value}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -108,16 +105,15 @@ const About = () => {
               <motion.div
                 key={t.title}
                 variants={cardVariant}
-                className="group bento-card rounded-2xl p-5 relative overflow-hidden"
+                className="group bento-card rounded-2xl p-5 relative overflow-hidden hover:border-primary/50 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer"
               >
-                {/* Card glow gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${t.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-
-                <div className="relative">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/15 transition-colors duration-300">
-                    <t.icon className={`h-5 w-5 ${t.iconColor}`} />
+                {/* Ambient hover glow gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="relative z-10">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-4 transition-all duration-300">
+                    <t.icon className="h-5 w-5 text-primary/70 group-hover:text-primary transition-colors duration-300" />
                   </div>
-                  <h3 className="font-display font-bold text-base text-foreground mb-1.5">
+                  <h3 className="font-display font-bold text-base text-foreground mb-1.5 group-hover:text-primary transition-colors duration-300">
                     {t.title}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">

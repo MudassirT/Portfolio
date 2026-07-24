@@ -40,7 +40,7 @@ const items = [
 
 const cardVariant = {
   hidden: { opacity: 0, x: -20 },
-  show:   { opacity: 1, x: 0, transition: { duration: 0.65, ease: [0.65, 0, 0.35, 1] } },
+  show: { opacity: 1, x: 0, transition: { duration: 0.65, ease: [0.65, 0, 0.35, 1] } },
 };
 
 const Education = () => {
@@ -92,42 +92,47 @@ const Education = () => {
                 </div>
 
                 {/* Card */}
-                <div className="bento-card rounded-2xl p-6 group-hover:border-primary/25 transition-all duration-300">
-                  <div className="flex items-start gap-4 mb-4">
-                    {/* Icon */}
-                    <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/15 transition-colors duration-300">
-                      <item.icon className="h-5 w-5 text-primary" />
-                    </div>
+                <div className="bento-card rounded-2xl p-6 border border-border/30 group-hover:border-primary/50 group-hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+                  {/* Ambient hover glow gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                    <div className="flex-1 min-w-0">
-                      <div className="flex flex-wrap items-center gap-2 mb-1">
-                        <span className="font-mono text-xs text-muted-foreground">
-                          {item.period}
-                        </span>
-                        <span className={`text-xs px-2 py-0.5 rounded-full font-medium font-mono ${item.statusColor}`}>
-                          {item.status}
-                        </span>
+                  <div className="relative z-10">
+                    <div className="flex items-start gap-4 mb-4">
+                      {/* Icon */}
+                      <div className="w-11 h-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
+                        <item.icon className="h-5 w-5 text-primary" />
                       </div>
-                      <h3 className="font-display font-bold text-lg text-foreground leading-tight">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">{item.subtitle}</p>
+
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-2 mb-1">
+                          <span className="font-mono text-xs text-muted-foreground">
+                            {item.period}
+                          </span>
+                          <span className={`text-xs px-2 py-0.5 rounded-full font-medium font-mono ${item.statusColor}`}>
+                            {item.status}
+                          </span>
+                        </div>
+                        <h3 className="font-display font-bold text-lg text-foreground leading-tight">
+                          {item.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground">{item.subtitle}</p>
+                      </div>
                     </div>
-                  </div>
 
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                    {item.description}
-                  </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                      {item.description}
+                    </p>
 
-                  <div className="flex flex-wrap gap-2">
-                    {item.skills.map(s => (
-                      <span
-                        key={s}
-                        className="text-xs px-2.5 py-1 rounded-lg bg-primary/8 text-primary font-mono border border-primary/15 hover:bg-primary/12 transition-colors"
-                      >
-                        {s}
-                      </span>
-                    ))}
+                    <div className="flex flex-wrap gap-2">
+                      {item.skills.map(s => (
+                        <span
+                          key={s}
+                          className="text-xs px-2.5 py-1 rounded-lg bg-primary/8 text-primary font-mono border border-primary/15 hover:bg-primary/12 transition-colors"
+                        >
+                          {s}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </motion.div>
