@@ -42,8 +42,8 @@ const projects = [
     tags: ["MongoDB", "Express", "React", "Node.js"],
     accent: "from-primary to-accent",
     emoji: "📝",
-    live: "#",
-    code: "https://github.com/MudassirT",
+    live: "https://paste-hub-opal.vercel.app/",
+    code: "https://github.com/MudassirT/Paste-Hub",
   },
   {
     title: "Tic Tac Toe Game",
@@ -52,8 +52,8 @@ const projects = [
     tags: ["React", "Tailwind", "Game Logic"],
     accent: "from-accent to-primary-glow",
     emoji: "🎮",
-    live: "#",
-    code: "https://github.com/MudassirT",
+    live: "https://tic-tac-toe-blond-eight-45.vercel.app/",
+    code: "https://github.com/MudassirT/Tic-Tac-Toe_Game",
   },
   {
     title: "Rock Paper Scissors",
@@ -62,8 +62,8 @@ const projects = [
     tags: ["JavaScript", "CSS", "DOM"],
     accent: "from-primary-glow to-primary",
     emoji: "✊",
-    live: "#",
-    code: "https://github.com/MudassirT",
+    live: "https://rock-paper-scissors-xi-henna.vercel.app/",
+    code: "https://github.com/MudassirT/Rock-Paper-Sicssors",
   },
 ];
 
