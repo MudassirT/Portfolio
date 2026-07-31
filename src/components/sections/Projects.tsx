@@ -33,7 +33,8 @@ const projects: Project[] = [
     accent: "from-accent to-primary",
     emoji: "🛒",
     featured: true,
-    live: "#",
+    image: "/fm_image.png",
+    live: "https://freshmart-neon.vercel.app/",
     code: "https://github.com/MudassirT",
   },
   {
